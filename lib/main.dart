@@ -1,8 +1,17 @@
+import 'dart:js_interop';
+import 'package:ecommerce/providers/navbar_provider.dart';
 import 'package:ecommerce/screens/home_screens.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main(runApp){
-  runApp(MyApp());
+void main(){
+  runApp(MultiProvider
+    (providers: [
+  ChangeNotifierProvider(create: (context) => NavbarProvider()),
+  ],
+  child: MyApp(),
+  ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HomeScreens(),
     );
   }
